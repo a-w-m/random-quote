@@ -1,0 +1,31 @@
+{
+  "name": "quote-machine",
+  "version": "1.0.0",
+  "description": "web app that finds and displays random quote",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a-w-m/random-quote.git"
+  },
+  "keywords": [
+    "javascript",
+    "web",
+    "scraping",
+    "free",
+    "code",
+    "camp"
+  ],
+  "author": "Amrey Mathurin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/a-w-m/random-quote/issues"
+  },
+  "homepage": "https://github.com/a-w-m/random-quote#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "jquery": "^3.4.1"
+  }
+}
