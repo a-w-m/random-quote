@@ -54,10 +54,6 @@ function main() {
         let personPageQuery = "https://en.wikiquote.org/w/api.php?origin=*&action=query&generator=links&gplnamespace=0&gpllimit=500&prop=info&format=json&formatversion=2&pageids=" + pageID + "&continue="
 
 
-
-        console.log(personPageQuery)
-
-
         request.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
 
@@ -102,8 +98,7 @@ function main() {
     function getQuote(pageID, callback = displayQuote) {
 
         let request = new XMLHttpRequest();
-        let quoteQuery = "https://en.wikiquote.org/w/api.php?origin=*&action=parse&format=json&prop=text%7Csections%7Cdisplaytitle%7Cparsewarnings&section=1&pageid=107"  
-        let quote = ""
+        let quoteQuery = "https://en.wikiquote.org/w/api.php?origin=*&action=parse&format=json&prop=text%7Csections%7Cdisplaytitle%7Cparsewarnings&section=1&pageid=" + pageID
 
 
         request.onload = function() {
@@ -141,29 +136,26 @@ function main() {
         let grabLineBreaks = new RegExp(/<br\s?\/>/gm)
         let cleanUpQuotes = new RegExp(/<(?!\/?br(?=>|\s.*>))\/?.*?>|\\n|\\/gm);
         let cleanQuotes = []
-        let verifierString = "[\\[\\]\\^\\+\\{\\}\\=]|\\d{4}|^\\d+$|1.Quotes|\\[edit\\]|Reffering to|p+[g]?\\.?\\s?\\d+|ch(apter)?\\.?\\s?\\d+|Book\\.?\\s?[IVXLCM]+|line+s?\\.?\\s?\\d+|Vol(ume)?\\.?|paragraph\\s?(?=\\d+|[xivcml]+)|" + jsonObject.parse.title 
+        let verifierString = "[\\[\\]\\^\\+\\{\\}\\=]|\\d{4}|^\\d+?\\d+$|1.Quotes|\\[edit\\]|Reffering to|p+[g]?\\.\\s?(?=\\d+|[xivcml]+)|ch\\.\\s?(?=\\d+|[xivcml]+)|chapter\\.?\\s(?=\\d+|[xivcml]+)|Book\\.?\\s?(?=\\d+|[xivcml]+)|line+s?\\.?\\s?(?=\\d+|[xivcml]+)|Vol(ume)?\\.|paragraph\\s?(?=\\d+|[xivcml]+)|edition|source needed|stanza|canto|Act,?\\s?scene|quoted" + jsonObject.parse.title
         let verifier = new RegExp(verifierString, "mi")
         console.log((JSON.stringify(jsonObject.parse.text['*']).match(grabDirtyQuotes)))
 
-        try{
+        try {
 
-        cleanQuotes = (JSON.stringify(jsonObject.parse.text['*']).match(grabDirtyQuotes)).reduce(function(results, item){
-            if (verifier.test(item.replace(grabLineBreaks, "/ ").replace(cleanUpQuotes, "")) !=true){
-                results.push(item.replace(grabLineBreaks, "<br>").replace(cleanUpQuotes, ""))
-            }
-            return results
+            cleanQuotes = (JSON.stringify(jsonObject.parse.text['*']).match(grabDirtyQuotes)).reduce(function(results, item) {
+                if (verifier.test(item.replace(grabLineBreaks, "<br>").replace(cleanUpQuotes, "")) != true && item.replace(grabLineBreaks, "<br>").replace(cleanUpQuotes, "").length >= 15) {
+                    results.push(item.replace(grabLineBreaks, "<br>").replace(cleanUpQuotes, ""))
+                }
+                return results
 
-        }, [])
-    }
-        
-        catch(err){
+            }, [])
+        } catch (err) {
             initQuoteMachine();
         }
-    
+
         console.log(cleanQuotes)
-        console.log(grabLineBreaks.test("<ul><li>Verse sweetens toil, however rude the sound;<br />She feels no biting pang the while she sings;<br />Nor, as she turns the giddy wheel around,<br />Revolves the sad vicissitudes of things.\n<ul>"))
         return cleanQuotes
-        
+
 
 
     };
@@ -173,47 +165,44 @@ function main() {
     function displayQuote(quote, author) {
 
         document.getElementById("text").innerHTML = quote;
-        document.getElementById("author").innerHTML = author;
+        document.getElementById("author").innerHTML = "—" + author;
 
 
 
         document.getElementById('new-quote').onclick = function() {
-          
+
             if (displayQuote.previous == undefined) {
                 displayQuote.previous = [{
                     "quote": quote,
                     "author": author
-            
+
                 }];
 
-            }else{
+            } else {
                 displayQuote.previous.push({
                     "quote": quote,
                     "author": author
-            
+
                 })
 
-               
+
             }
 
             displayQuote.lastIndex = displayQuote.previous.length - 1
             initQuoteMachine()
 
-            
-         
-            
         }
 
         document.getElementById("prev-quote").onclick = function() {
             document.getElementById("text").innerHTML = displayQuote.previous[displayQuote.lastIndex]["quote"]
-            document.getElementById("author").innerHTML = displayQuote.previous[displayQuote.lastIndex]["author"]
-            displayQuote.lastIndex--;        
-        
-    }
-    
+            document.getElementById("author").innerHTML = "—" + displayQuote.previous[displayQuote.lastIndex]["author"]
+            displayQuote.lastIndex--;
+
+        }
+
         document.getElementById("tweet-link").setAttribute('href', "http://twitter.com/intent/tweet?text=" + document.getElementById("text").innerHTML)
 
-        document.getElementById("tumblr-link").setAttribute('href', "https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes&caption=" + encodeURI(document.getElementById("author").innerHTML) + "&content="+ encodeURI(document.getElementById("text").innerHTML) +"&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button&posttype=quote")
+        document.getElementById("tumblr-link").setAttribute('href', "https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes&caption=" + encodeURI(document.getElementById("author").innerHTML) + "&content=" + encodeURI(document.getElementById("text").innerHTML) + "&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button&posttype=quote")
 
 
 
