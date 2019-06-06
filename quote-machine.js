@@ -214,11 +214,4 @@ function main() {
 
 main();
 
-//Issue:
 
-//fix hawthorne numbers
-//fix poetry (de kok) line breaks (jacques prevert) {replace <br> with /}
-//quote of the day showing up
-//stub pages Qin Shi Huang
-//page numbers stephen covey
-//dots Michael Friendly
