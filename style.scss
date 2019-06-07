@@ -63,13 +63,15 @@ main {
     justify-content: flex-start;
     align-items: flex-end;
     margin: auto 0;
+    margin-top: 1rem;
 
 }
 
-.social-media-box {
+#social-media-box {
     font-size: 1.5rem;
     flex: 0 1 30%;
     margin-top: 1rem;
+    
 }
 
 .social-media-box > a{
@@ -125,5 +127,9 @@ margin-right: .5rem;
     }
     .nav-box{
         width: 60%;
+    }
+
+    .quote-box-footer{
+        margin-top: 2rem;
     }
 }
