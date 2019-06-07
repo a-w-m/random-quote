@@ -17,6 +17,7 @@ function main() {
 
                 //convert JSON response to object
                 let responseJSON = (JSON.parse(request.responseText));
+                console.log(responseJSON)
 
                 //random number generator from 1 to response.query.pages.length; starts at 1 because the pageID at index 0 is not an appropriate People Page
                 let randomIndex = Math.floor(Math.random() * (responseJSON.query.pages.length - 1)) + 1;
@@ -78,7 +79,8 @@ function main() {
                     //random number generator used to grab random element from personPages down below.
                     let randomIndex = Math.floor(Math.random() * (personPages.length))
                     let personPageID = personPages[randomIndex]["pageid"].toString();
-
+                       
+                    console.log(responseJSON, PersonPages)
                     callback(personPageID)
 
                 }
