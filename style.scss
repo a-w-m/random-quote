@@ -1,5 +1,5 @@
 $base-color: rgb(255, 255, 255);
-$font-size: 1.25rem;
+$font-size: 1.1rem;
 $quote-font: 'Lato', sans-serif;
 $line-height: 2rem;
 
@@ -45,7 +45,7 @@ main {
 
 .quote-box {
     flex: 4 1 60%;
-    margin: auto 0;
+    margin: auto .75rem;
     }
 
 .quote-item {
@@ -53,6 +53,7 @@ main {
     line-height: $line-height;
     text-align: center;
     margin: auto auto;
+    
     
 }
 
@@ -67,10 +68,10 @@ main {
 
 }
 
-#social-media-box {
-    font-size: 1.5rem;
+#social-box {
+    font-size: 1.35rem;
     flex: 0 1 30%;
-    margin-top: 1rem;
+    visibility: hidden;
     
 }
 
@@ -81,6 +82,7 @@ main {
 #tweet-quote{
 margin-right: .5rem;
 }
+
 .author{
     flex: 1 1 70%;
     text-align:  right;
@@ -118,13 +120,20 @@ margin-right: .5rem;
 
 @media only screen and (min-device-width: 768px) {
 
+
     main{
-      justify-content:  center;
-      align-items: center;  
+      justify-content:  flex-start; 
+      align-items: center;
+      font-size: 1.25rem;
+      
     }
-    #quote-box {
+    .quote-box {
+        margin-top: 5rem;
         width: 60%;
+        flex: 4 1 20%;
+        
     }
+
     .nav-box{
         width: 60%;
     }
@@ -133,3 +142,4 @@ margin-right: .5rem;
         margin-top: 2rem;
     }
 }
+
