@@ -169,7 +169,7 @@ async function main() {
             const grabDirtyQuotes = new RegExp(/<ul>(.*?)<ul>/gm);
             const grabLineBreaks = new RegExp(/<br\s?\/>/gm)
             const cleanUpQuotes = new RegExp(/<(?!\/?br(?=>|\s.*>))\/?.*?>|\\n|\\/gm);
-            const verifierString = "[\\[\\]\\^\\+\\{\\}\\=]|\\d{4}|^\\d+?\\d+$|\\d+\\)?$|\\d+\\.\\d+?|\\d+\\w|\\W{4,}|1.Quotes|\\[edit\\]|Reffering to|p+[g]?\\.\\s?(?=\\d+|[xivcml]+)|page[s]?\\s?\\d+|ch\\.\\s?(?=\\d+|[xivcml]+)|chapter\\.?\\s(?=\\d+|[xivcml]+)|Book\\.?\\s?(?=\\d+|[xivcml]+)|line+s?\\.?\\s?(?=\\d+|[xivcml]+)|Vol(ume)?\\.|paragraph\\s?(?=\\d+|[xivcml]+)|edition|source needed|stanza|canto|Act,?\\s?scene|quoted|from the album|" + title
+            const verifierString = "[\\[\\]\\^\\+\\{\\}\\=]|\\d{4}|^\\d+?\\d+$|\\d+\\)?$|\\d+\\.\\d+?|\\d+\\w|\\W{4,}|[a-z][A-Z]|1.Quotes|\\[edit\\]|Reffering to|p+[g]?\\.\\s?(?=\\d+|[xivcml]+)|page[s]?\\s?\\d+|ch\\.\\s?(?=\\d+|[xivcml]+)|chapter\\.?\\s(?=\\d+|[xivcml]+)|Book\\.?\\s?(?=\\d+|[xivcml]+)|line+s?\\.?\\s?(?=\\d+|[xivcml]+)|Vol(ume)?\\.|paragraph\\s?(?=\\d+|[xivcml]+)|edition|source needed|stanza|canto|Act,?\\s?scene|quoted|from the album|" + title
             const verifier = new RegExp(verifierString, "mi")
 
 
