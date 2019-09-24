@@ -1,73 +1,146 @@
+/*Media Queries*/
+/*variables*/
+body, html {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+}
+
 body {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background: #EAE7DC;
   font-family: "Lato", sans-serif;
-  font-size: 1.1rem;
-  width: 100vw;
-  height: 100vh;
 }
 
 main {
+  display: grid;
+  grid-template-rows: minmax(max-content, auto) repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
+  background: #EF9748;
+  width: 95%;
+  overflow-y: auto;
+  border: 0.1rem solid #402E32;
+}
+@media (min-width: 1024px) {
+  main {
+    width: 75%;
+  }
+}
+@media (min-width: 600px) and (max-width: 899px) and (orientation: landscape) {
+  main {
+    width: 90%;
+    min-height: 90%;
+  }
+}
+@media (min-width: 600px) and (orientation: portrait) {
+  main {
+    width: 80%;
+  }
+}
+
+#text {
+  grid-area: 1/1/2/3;
   display: flex;
-  flex-flow: column nowrap;
-  margin: auto;
-  height: 100%;
-  width: 100%;
-}
-
-.quote-box {
-  flex: 4 1 60%;
-  margin: auto 0.75rem;
-}
-
-.quote-item {
-  line-height: 2rem;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  margin: auto auto;
+  color: #534439;
+  margin-top: 0.25rem;
 }
-
-.quote-box-footer {
-  display: flex;
-  flex-flow: row wrap;
-  flex: 0.5 1 0;
-  justify-content: flex-start;
-  align-items: flex-end;
-  margin: auto 0;
-  margin-top: 1rem;
+@media (min-width: 1024px) {
+  #text {
+    align-items: flex-start;
+    grid-area: 1/1/2/4;
+    font-size: 1.65rem;
+    margin-top: 1rem;
+  }
+}
+@media (min-width: 600px) and (max-width: 899px) and (orientation: landscape) {
+  #text {
+    font-size: 0.95rem;
+  }
+}
+@media (min-width: 600px) and (orientation: portrait) {
+  #text {
+    align-items: flex-start;
+    grid-area: 1/1/2/4;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
 }
 
 #social-box {
-  font-size: 1.35rem;
-  flex: 0 1 30%;
-  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  grid-area: 2/1/3/3;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+  margin-top: 0.25rem;
+}
+@media (min-width: 1024px) {
+  #social-box {
+    font-size: 2rem;
+    margin-left: 0.25rem;
+    margin-top: 0.5rem;
+  }
+}
+@media (min-width: 600px) and (orientation: portrait) {
+  #social-box {
+    font-size: 1.25rem;
+  }
 }
 
-.social-media-box > a {
-  color: black;
-}
-
-#tweet-quote {
+#social-box > a {
+  color: #845F8F;
   margin-right: 0.5rem;
 }
+@media (min-width: 1024px) {
+  #social-box > a {
+    margin-right: 0.25rem;
+  }
+}
 
-.author {
-  flex: 1 1 70%;
-  text-align: right;
-  font: 1rem;
+#author {
+  grid-area: 3/1/4/3;
+  align-self: flex-start;
+  text-align: center;
+  color: #534439;
+  font-size: 0.9rem;
+}
+@media (min-width: 1024px) {
+  #author {
+    font-size: 1.25rem;
+  }
+}
+@media (min-width: 600px) and (orientation: portrait) {
+  #author {
+    font-size: 1.15rem;
+  }
 }
 
 .nav-box {
+  grid-area: 4/1/5/3;
   display: flex;
-  flex: 1 4 40%;
   justify-content: space-around;
-  margin-top: 1rem;
-  align-items: start;
+  color: #534439;
+}
+@media (min-width: 1024px) {
+  .nav-box {
+    font-size: 1.25rem;
+  }
+}
+@media (min-width: 600px) and (orientation: portrait) {
+  .nav-box {
+    font-size: 1.25rem;
+  }
 }
 
-.button-item {
+.nav-box > button {
   padding: 0rem 0.5rem;
   width: 8rem;
   height: 6rem;
@@ -76,38 +149,25 @@ main {
   border-radius: 0.25rem;
   font-size: 1.5rem;
   font-family: inherit;
-  color: white;
-  background-color: black;
-  cursor: pointer;
-  flex: 0 1 8rem;
-}
-
-.button-item:active {
-  background-color: white;
   color: black;
+  background-color: #009178;
+  cursor: pointer;
+  transition: opacity 0.5s;
+}
+@media (min-width: 600px) and (max-width: 899px) and (orientation: landscape) {
+  .nav-box > button {
+    height: 4rem;
+    width: 8rem;
+  }
 }
 
-/*Laptop and Desktop Screens*/
-@media only screen and (min-device-width: 768px) {
-  main {
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 1.25rem;
-  }
+.nav-box > button:active {
+  transform: translateY(-2px);
+  opacity: 0.5;
+}
 
-  .quote-box {
-    margin-top: 5rem;
-    width: 60%;
-    flex: 4 1 20%;
-  }
-
-  .nav-box {
-    width: 60%;
-  }
-
-  .quote-box-footer {
-    margin-top: 2rem;
-  }
+.footer {
+  font-size: 0.75rem;
 }
 
 /*# sourceMappingURL=style.css.map */

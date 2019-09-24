@@ -1,0 +1,24 @@
+
+@mixin button {
+    padding: 0rem .5rem;
+    width: 8rem;
+    height: 6rem;
+    line-height: 1;
+    border: solid .1rem transparent;
+    border-radius: .25rem;
+    font-size: 1.5rem;
+    font-family: inherit;
+    color: black;
+    background-color: $button-color;
+    cursor: pointer;
+    transition: opacity .5s 
+    
+}
+
+
+@mixin button-active{
+    transform: translateY(-2px);
+    opacity: .5;
+
+
+}

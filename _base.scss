@@ -1,0 +1,51 @@
+/*Media Queries*/
+
+@mixin for-phone-only {
+    @media (max-width: 599px) {
+      @content;
+    }
+  }
+  @mixin for-phone-landscape-up {
+    @media (min-width: 600px) and (max-width: 899px) and (orientation: landscape) {
+      @content;
+    }
+  }
+  @mixin for-tablet-only {
+    @media (min-width: 600px) and (orientation: portrait) {
+      @content;
+    }
+  }
+  @mixin for-desktop-up {
+    @media (min-width: 1024px) {
+      @content;
+    }
+  }
+  @mixin for-big-desktop-up {
+    @media (min-width: 1800px) {
+      @content;
+    }
+  }
+  @mixin for-extra-large-tablet-only {
+    @media screen and (min-width: 1024px) and (min-height: 1366px) and (orientation: landscape) {
+      @content;
+    }
+  }
+  @mixin for-extra-large-tablet-landscape /*IPad Pro*/ {
+    @media only screen and (min-width: 1366px) and (max-height: 1024px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+      @content;
+    }
+  }
+
+
+
+
+  /*variables*/
+  
+    $body-bg-color:#EAE7DC;
+    $quote-machine-bg-color:#EF9748;
+    $text-color: #534439;
+    $button-color: #009178;
+    $border-color: #402E32;
+    $font-size: 1.1rem;
+    $quote-font: 'Lato', sans-serif;
+    $line-height: 2rem;

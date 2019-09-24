@@ -1,0 +1,189 @@
+body, html{
+
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+
+    
+}
+
+body{
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background: $body-bg-color;
+    font-family: $quote-font;
+    
+
+}
+
+main{
+
+   
+
+        display: grid;
+        grid-template-rows: minmax(max-content, auto) repeat(3, 1fr);
+        grid-template-columns: 1fr 1fr;
+        background: $quote-machine-bg-color;
+        width: 95%;
+        overflow-y: auto;
+        border: .1rem solid $border-color;
+        
+        
+      
+
+    @include for-desktop-up{
+        width: 75%
+    }
+
+    @include for-phone-landscape-up{
+        width: 90%;
+        min-height: 90%;
+
+    }
+
+    @include for-tablet-only{
+        width: 80%;
+
+    }
+}
+
+#text
+{
+
+ 
+    grid-area: 1/1/2/3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: $text-color;
+    margin-top: .25rem;
+   
+
+
+    @include for-desktop-up{
+       
+        align-items: flex-start;
+        grid-area: 1/1/2/4; 
+        font-size: 1.65rem;
+        margin-top: 1rem
+
+    }
+
+    @include for-phone-landscape-up{
+        font-size: .95rem;
+    }
+
+    @include for-tablet-only{
+        align-items: flex-start;
+        grid-area: 1/1/2/4; 
+        font-size: 1.5rem;
+        margin-top: 1rem
+
+    }
+
+}
+
+#social-box{
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    grid-area: 2/1/3/3;
+    font-size: 1rem;
+    margin-left: .5rem;
+    margin-top: .25rem;
+    
+
+    @include for-desktop-up{
+ 
+        font-size: 2rem;
+        margin-left: .25rem;
+        margin-top: .5rem;
+    }
+
+    @include for-tablet-only{
+        font-size: 1.25rem;
+        
+    }
+
+    
+}
+
+#social-box > a{
+    color: #845F8F;
+    margin-right: .5rem;
+
+    @include for-desktop-up{
+    margin-right: .25rem
+
+}
+}
+
+
+#author{
+
+    grid-area: 3/1/4/3;
+    align-self: flex-start;
+    text-align: center;
+    color: $text-color;
+    font-size: .90rem;
+  
+
+    @include for-desktop-up{
+
+    font-size: 1.25rem;
+
+
+    }
+
+    @include for-tablet-only{
+        font-size: 1.15rem;
+    }
+
+    
+}
+
+.nav-box{
+    grid-area: 4/1/5/3;
+    display: flex;
+    justify-content: space-around;
+    color: $text-color;
+  
+
+    @include for-desktop-up{
+
+        font-size: 1.25rem;
+    
+
+        }
+
+    @include for-tablet-only{
+        font-size: 1.25rem;
+    }
+    
+
+
+}
+
+.nav-box > button{
+    @include button;
+
+    @include for-phone-landscape-up{
+        height: 4rem;
+        width: 8rem;
+    }
+    
+}
+
+.nav-box > button:active{
+    @include button-active;
+}
+
+.footer{
+    font-size: .75rem;
+}
