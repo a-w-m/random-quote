@@ -20,7 +20,14 @@ async function main() {
 
     const validPage = responseJSON.query.pages.reduce((acc, item) => {
       acc.push(item.pageid);
-      if (item.pageid == 119121 || item.pageid == 74) {
+      if (
+        item.pageid == 119121 ||
+        item.pageid == 74 ||
+        item.pageid == 217368 ||
+        item.pageid == 5712 ||
+        item.pageid == 219654 ||
+        item.pageid == 67873
+      ) {
         acc.pop();
       }
       return acc;
@@ -36,8 +43,7 @@ async function main() {
       161418,
       161419,
       161420,
-      94,
-      217368
+      94
     ]);
 
     const res = {
@@ -54,7 +60,6 @@ async function main() {
     /* this function takes as an argument an object containing a random pageID to a page within "Category:People" and an array of pageids to be filtered out of the fetch response as they link back to "Category:People"
 
         wikimedia API requires "&continue=" within query url in order to continue the query passed the 500 element limit. The function handles these multiple requests using recursion. Returns a promise of an array of person pages*/
-
     let personPageQuery =
       "https://en.wikiquote.org/w/api.php?origin=*&action=query&generator=links&gplnamespace=0&gpllimit=500&prop=info&format=json&formatversion=2&pageids=";
     let personPages = [];
@@ -137,7 +142,6 @@ async function main() {
       const quoteQuery =
         "https://en.wikiquote.org/w/api.php?origin=*&action=parse&format=json&prop=text%7Csections%7Cdisplaytitle%7Cparsewarnings&section=1&pageid=" +
         pageID;
-
       const response = await fetch(quoteQuery);
       status(response);
       const responseJSON = await response.json();
@@ -164,7 +168,7 @@ async function main() {
 
     try {
       const title = jsonObject.parse.title;
-      const grabDirtyQuotes = new RegExp(/<ul>(.*?)<ul>/gm);
+      const grabDirtyQuotes = new RegExp(/<li>(.*?)<li>/gm);
       const grabLineBreaks = new RegExp(/<br\s?\/>/gm);
       const cleanUpQuotes = new RegExp(/<(?!\/?br(?=>|\s.*>))\/?.*?>|\\n|\\/gm);
       const verifierString =
@@ -181,7 +185,9 @@ async function main() {
               item.replace(grabLineBreaks, "<br>").replace(cleanUpQuotes, "")
             ) != true &&
             item.replace(grabLineBreaks, "<br>").replace(cleanUpQuotes, "")
-              .length >= 20
+              .length >= 20 &&
+            item.replace(grabLineBreaks, "<br>").replace(cleanUpQuotes, "")
+              .length < 950
           ) {
             results.push(
               item.replace(grabLineBreaks, "<br>").replace(cleanUpQuotes, "")
@@ -213,13 +219,6 @@ async function main() {
 
     let quote = data.quote;
     let author = data.author;
-
-    if (quote.length > 950) {
-        /*keeps the quote within reasonable length for display*/
-
-      quote = quote.slice(0, 900);
-      quote = quote.slice(0, quote.lastIndexOf(" ")) + "...";
-    }
 
     document.getElementById("text").innerHTML = quote;
     document.getElementById("author").innerHTML = "—" + author;
