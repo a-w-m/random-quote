@@ -26,6 +26,6 @@
   "homepage": "https://github.com/a-w-m/random-quote#readme",
   "dependencies": {},
   "devDependencies": {
-    "jquery": "^3.4.1"
+    "jquery": "^3.5.0"
   }
 }
