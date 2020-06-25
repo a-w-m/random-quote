@@ -91,8 +91,15 @@ async function main() {
             res.continue.gplcontinue;
           return fetchCont(personPageQuery, contQuery);
         } else {
-          personPages = personPages.concat(res.query.pages);
-          return personPages;
+
+            if(res.query.pages){
+              personPages = personPages.concat(res.query.pages);
+              return personPages;
+            }
+            else{
+              return personPages
+            }
+     
         }
       };
 
