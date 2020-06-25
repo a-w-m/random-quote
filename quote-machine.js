@@ -73,7 +73,6 @@ async function main() {
     if ("continue" in responseJSON) {
       let initCont =
         data.pageid +
-        responseJSON.continue.continue +
         "&gplcontinue=" +
         responseJSON.continue.gplcontinue;
 
