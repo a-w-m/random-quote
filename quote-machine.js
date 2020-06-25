@@ -92,7 +92,7 @@ async function main() {
           return fetchCont(personPageQuery, contQuery);
         } else {
 
-            if(res.query.pages){
+            if(res.query){
               personPages = personPages.concat(res.query.pages);
               return personPages;
             }
